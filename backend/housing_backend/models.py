@@ -8,7 +8,7 @@ class Affordable(models.Model):
     neighborhood = models.ForeignKey('Neighborhood', on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.group_typ + self.group_type + self.housing_size
+        return str(self.demographic) + str(self.housing_size) + str(self.neighborhood)
 
 
 class Demographic(models.Model):
