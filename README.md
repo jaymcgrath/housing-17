@@ -53,9 +53,11 @@ cd backend/
 5. Load data into database from csv file. Right now the csv file exists [here](https://drive.google.com/file/d/0B0810KzsNR3mUDkzdERQNmc3U00/view?usp=sharing).
 
 In Command line:
+
 ```./manage shell```
 
 In Python shell:
+
 ```import loader```
 
 It'll ask you where the csv you downloaded is, give it the whole path
@@ -64,13 +66,16 @@ ex. ```/Users/MyComp/Downloads/Neighborhoods.csv```
 
 Then to exit the python shell enter:
 
-```exit()```
+```
+exit()
+```
 
 6. Run the development server
 
 ```
 ./manage runserver
 ```
+
 7. Have at it! Feel free to explore the [API docs](https://github.com/hackoregon/housing-17/tree/backend/docs/API.md)
 
 
