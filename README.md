@@ -38,14 +38,16 @@ virtualenv venv
 ```
 source venv/bin/activate
 ```
+
 3. Install necessary Python Libraries
 
 ```pip install -r requirements.txt```
+
 4. Navigate to project directory and make database migrations.
 
 ```
 cd backend/
-./manage migrate
+./manage.py migrate
 ```
 
 5. Load data into database from csv file. Right now the csv file exists [here](https://drive.google.com/file/d/0B0810KzsNR3mUDkzdERQNmc3U00/view?usp=sharing).
