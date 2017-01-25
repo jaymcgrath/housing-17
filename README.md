@@ -7,37 +7,70 @@ Our goal is to create a tool that allows the public to easily understand and exp
 
 ### Requirements
 
-* Python 3.5
-* Django 1.10
+* [Python 3.5.x](https://www.python.org/downloads/)
+* [Virtualenv](https://virtualenv.pypa.io/en/stable/installation/)
 
 ### Installing
 
 1. Clone the repository from the command line with:
-```git clone git@github.com:hackoregon/housing-17.git```
+
+```
+git clone git@github.com:hackoregon/housing-17.git
+
+```
+
+Navigate to the backend branch
+
+```
+cd housing-17
+git fetch origin backend
+git checkout backend
+```
+
 2. Start a new python virtual environment:
+
 ```
 virtualenv venv
 ```
+
 3. Activate your new environment
+
 ```
 source venv/bin/activate
 ```
 3. Install necessary Python Libraries
+
 ```pip install -r requirements.txt```
 4. Navigate to project directory and make database migrations.
+
 ```
-cd backend
+cd backend/
 ./manage migrate
 ```
-5. Load data into database from csv file.
-#TODO: where to pull data from?
-#TODO: script that will load data into database for you?
+
+5. Load data into database from csv file. Right now the csv file exists [here](https://drive.google.com/file/d/0B0810KzsNR3mUDkzdERQNmc3U00/view?usp=sharing).
+
+In Command line:
+```./manage shell```
+
+In Python shell:
+```import loader```
+
+It'll ask you where the csv you downloaded is, give it the whole path
+
+ex. ```/Users/MyComp/Downloads/Neighborhoods.csv```
+
+Then to exit the python shell enter:
+
+```exit()```
+
 6. Run the development server
+
 ```
 ./manage runserver
 ```
-7. Have at it! Feel free to explore the [API docs](#)
-#TODO: write API Docs
+7. Have at it! Feel free to explore the [API docs](https://github.com/hackoregon/housing-17/tree/backend/docs/API.md)
+
 
 ##### When you're done:
  1. Press ```ctrl + c``` to kill the dev server
