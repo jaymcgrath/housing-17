@@ -54,15 +54,17 @@ cd backend/
 
 In Command line:
 
-```./manage shell```
+```./manage.py shell```
 
 In Python shell:
 
-```import loader```
+```import housing_backend.loader```
 
 It'll ask you where the csv you downloaded is, give it the whole path
 
 ex. ```/Users/MyComp/Downloads/Neighborhoods.csv```
+
+This might take a little while since we're loading the data into the database.
 
 Then to exit the python shell enter:
 
@@ -73,7 +75,7 @@ exit()
 6. Run the development server
 
 ```
-./manage runserver
+./manage.py runserver
 ```
 
 7. Have at it! Feel free to explore the [API docs](https://github.com/hackoregon/housing-17/tree/backend/docs/API.md)
