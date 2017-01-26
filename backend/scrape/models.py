@@ -25,12 +25,12 @@ class CraigslistPosting(models.Model):
     created_on = models.DateTimeField(auto_now_add=True, help_text='when the record was created')
     listed_on = models.DateTimeField(help_text='when the craigslist listing was posted')
     district = models.CharField(max_length=256, help_text='neighborhood according to craigslist')
-    price = models.IntegerField(help_text='monthly rent')
-    bedrooms = DecimalField(null=True, help_text='number of bedrooms')
-    bathrooms = DecimalField(null=True, help_text='number of bathrooms') # Decimal to handle 1.5 bath, etc
-    sq_ft = IntegerField(null=True, help_text='square footage')
-    url = TextField(help_text='url of original listing from which this info was scraped')
-    title = TextField(help_text='original title of the listing')
+    rent = models.IntegerField(help_text='monthly rent')
+    bedrooms = models.DecimalField(null=True, help_text='number of bedrooms')
+    bathrooms = models.DecimalField(null=True, help_text='number of bathrooms') # Decimal to handle 1.5 bath, etc
+    sq_ft = models.IntegerField(null=True, help_text='square footage')
+    url = models.TextField(help_text='url of original listing from which this info was scraped')
+    title = models.TextField(help_text='original title of the listing')
     lat = models.FloatField(null=True, help_text='latitude')
     lon = models.FloatField(null=True, help_text='longitude')
 
