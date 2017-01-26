@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'housing_backend.apps.HousingBackendConfig',
+    'scrape',
     'rest_framework',
 ]
 
