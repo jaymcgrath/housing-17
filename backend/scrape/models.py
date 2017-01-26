@@ -1,9 +1,13 @@
-from django.db import models
-
 from decimal import Decimal
 
+from django.db import models
+
+
 class CurrencyField(models.DecimalField):
-    "Custom currency field, returns two decimal places"
+    """
+    Custom currency field, returns two decimal places
+    """
+
     __metaclass__ = models.SubfieldBase
 
     def to_python(self, value):
@@ -12,8 +16,6 @@ class CurrencyField(models.DecimalField):
         except AttributeError:
             return None
 
-
-# Create your models here.
 
 class CraigslistPosting(models.Model):
     """
