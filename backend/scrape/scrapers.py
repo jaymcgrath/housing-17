@@ -31,9 +31,9 @@ class PDXCraigslistHousing(CraigslistHousing):
         if response.ok:
             soup = BeautifulSoup(response.content, 'html.parser')
 
-            # Get the bedroom and bath badge
+            # Get the bedrooms baths sqft badges
             badges = soup.find('p', {'class': 'attrgroup'}).get_text()
-
+            print(badges)
             if badges:
                 try:
                     num_br = re.search(r'(?P<num_br>\d+)BR', badges).group('num_br')
@@ -45,7 +45,16 @@ class PDXCraigslistHousing(CraigslistHousing):
                 except:
                     num_ba = None
 
-                custom_result = {'bedrooms': num_br, 'bathrooms': num_ba}
+                try:
+                    sq_ft = re.search(r'(?P<sqft>\d+)ft2', badges).group('sqft')
+                except:
+                    sq_ft = None
+
+                custom_result = {
+                                'bedrooms': num_br,
+                                'bathrooms': num_ba,
+                                'sq_ft': sq_ft
+                            }
 
                 result.update(custom_result)
 
@@ -71,7 +80,7 @@ def todays_listings():
 
     scraper = PDXCraigslistHousing(site='portland', area='mlt', category='apa')
 
-    # Tell the scraper to be on the lookout for our Br/Ba custom result fields
+    # Tell the scraper to be on the lookout for our br/ba/sqft custom result fields
     scraper.custom_result_fields = True
 
     # Add a few custom filters to query
