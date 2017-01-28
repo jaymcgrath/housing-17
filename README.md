@@ -1,7 +1,7 @@
 # Data Sources Branch
 This branch is used for version control and review of CSVs derived from the variety of data sources used by the Housing Team. See the [Data Sources Wiki Page] (https://github.com/hackoregon/housing-17/wiki/Data-Sources) for more information.
 
-Note that because this branch should not be merged with the integration branch `master` - see the [DevOps wiki] (https://github.com/hackoregon/housing-17/wiki/DevOps) for more information on deployment.
+Note that because of the potential for very large files this branch should not be merged with the integration branch `master` - see the [DevOps wiki] (https://github.com/hackoregon/housing-17/wiki/DevOps) for more information on our approach to deployment of data sources.
 
 ## Getting Started
 
