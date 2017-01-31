@@ -5,6 +5,9 @@ from django.conf import settings
 This script is meant to be used with this specific dataset
 https://drive.google.com/file/d/0B0810KzsNR3mUDkzdERQNmc3U00/view?usp=sharing
 """
+#TODO:
+#   (1/31) - Update to take in new csv files: NeighborhoodProfiles, NeighborhoodHousingMarket and Demographic profiles
+
 file = input('What is the absolute path to the downloaded csv file?: ')
 
 dframe = pd.read_csv(file)
