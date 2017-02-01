@@ -108,7 +108,7 @@ See the [Wiki](https://github.com/hackoregon/housing-17/wiki) for notes about th
 
 ## Contributing
 
-All Hack Oregon projects are open source, built entirely by volunteers from our local community. Visit [Hack Oregon - Build With Us](http://www.hackoregon.org/join/) to learn more!
+All Hack Oregon projects are open source, built entirely by volunteers from our local community. Visit [Hack Oregon - Build With Use](http://www.hackoregon.org/join/) to learn more!
 
 ## Versioning
 
