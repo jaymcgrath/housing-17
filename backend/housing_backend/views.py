@@ -1,6 +1,6 @@
 import django_filters
-from housing_backend.models import Affordable
-from housing_backend.serializers import AffordableSerializer
+from housing_backend.models import Affordable, NeighborhoodRent
+from housing_backend.serializers import AffordableSerializer, RentSerializer
 from rest_framework import generics
 
 class AffordableFilter(django_filters.rest_framework.FilterSet):
