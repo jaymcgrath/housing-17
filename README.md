@@ -100,36 +100,34 @@ Give an example
 
 ## Deployment
 
-See the DevOps page of the [Wiki](https://github.com/hackoregon/housing-17/wiki) for notes about how to deploy this on a live system
+Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-See the [Wiki](https://github.com/hackoregon/housing-17/wiki) for notes about the front-end, datbases, and web framework used for the project
+* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
+* [Maven](https://maven.apache.org/) - Dependency Management
+* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
 
 ## Contributing
 
-All Hack Oregon projects are open source, built entirely by volunteers from our local community. Visit [Hack Oregon - Build With Use](http://www.hackoregon.org/join/) to learn more!
+Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/hackoregon/housing-17/tags).
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
 
-## Core Team Leadership
+## Authors
 
-* **Adrienne Tilley** - *Design Lead*
-* **Bimal Rajbhandary** - *Domain Expert / Strategic Development*
-* **Avi Lundberg** - *Design Lead*
-* **David Daniel** - *Tech Lead*
-* **Derek Demaria** - *Front-end Lead*
-* **Gabriele Hayden** - *Facilitator / Strat Dev*
-* **Victoria James** - *Domain Expert / Strategic Development*
-* **Warren Friedland** - *Tech Lead*
-* **Kartik Nagappa** - *Design Lead*
+* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
 
-See also the list of [contributors](https://github.com/hackoregon/housing-17/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
 
-* [Crop Compass](http://www.cropcompass.org/)
-* [PlotPDX](http://plotpdx.org)
-* [Programming to Progress](http://www.programmingtoprogress.org/)
+* Hat tip to anyone who's code was used
+* Inspiration
+* etc
