@@ -23,8 +23,8 @@ class AffordableDetail(generics.RetrieveUpdateDestroyAPIView):
 
 class RentFilter(django_filters.rest_framework.FilterSet):
     rent_amt = django_filters.NumberFilter(name="rent_amt", lookup_expr="rent")
-    rent_amt_gt = django_filters.NumberFilter(name="rent_amt", lookup_expr="rent__gt")
-    rent_amt_lt = django_filters.NumberFilter(name="rent_amt", lookup_expr="rent__lt")
+    rent_amt_gt = django_filters.NumberFilter(name="rent_amt", lookup_expr="gt")
+    rent_amt_lt = django_filters.NumberFilter(name="rent_amt", lookup_expr="lt")
     housing_size = django_filters.CharFilter(name="housing_size__household_type")
 
     class Meta:
