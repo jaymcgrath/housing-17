@@ -12,9 +12,6 @@ class Affordable(models.Model):
 
 
 class NeighborhoodRent(models.Model):
-    # Neighborhoods have report_years. Is that included when i have a foreign key 
-    # or does the information need to be here. It is located in the csv
-    # that this model maps too
     nh_id = models.ForeignKey('Neighborhood', on_delete=models.CASCADE)
     housing_size = models.ForeignKey('HousingSize', on_delete=models.CASCADE)
     rent_amt = models.IntegerField()
@@ -39,7 +36,7 @@ class HousingSize(models.Model):
 
 class Neighborhood(models.Model):
     name = models.CharField(max_length=50)
-    report_year = models.ForeignKey('ReportYear', on_delete=models.CASCADE) # Not sure if needed
+    report_year = models.ForeignKey('ReportYear', on_delete=models.CASCADE)
     #shape_file = models.FieldFile() possibility if shape file data needs to be stored
 
     def __str__(self):
