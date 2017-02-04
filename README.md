@@ -33,69 +33,45 @@ $ git checkout backend
 
 ### Run
 
-#### Bash/Zsh/etc
-
-##### Start:
-```sh
-$ ./dj.sh up
-```
-
-##### Shutdown:
-```sh
-$ ./dj.sh down
-  # or
-$ ./dj.sh down --rmi   # remove images to save disk space
-```
-
-##### Rebuild images (necessary if `requirements.txt` changes):
-```sh
-$ ./dj.sh down   # (if not already shut down)
-$ ./dj.sh up --build
-```
-
-##### Run manage.py command directly:
-```sh
-$ ./dj.sh manage <command>
-```
-
-#### Windows (or Bash/Zsh/etc....)
-
 ##### Start:
 
-Run Django and PostgreSQL detached (running in the background):
-```sh
+Run Django and PostgreSQL:
+```
+$ docker-compose up
+```
+
+You can also run it in the background:
+```
 $ docker-compose up -d
 ```
-
-Migrate database:
-```sh
-docker-compose exec web ./manage.py migrate
-```
-
-Load data:
-```sh
-docker-compose exec web ./manage.py shell --command="import housing_backend.loader"
-```
-This might take a little while since we're loading the data into the database.
+It looks like it starts faster this way, but give it a bit to import data into
+the database in the background before trying to view it in a browser.
 
 ##### Shutdown:
-```sh
+
+```
 $ docker-compose down
   # or
 $ docker-compose down --rmi all   # remove images to save disk space
 ```
 
 ##### Rebuild images (necessary if `requirements.txt` changes):
-```sh
+
+```
 $ docker-compose down   # (if not already shut down)
 $ docker-compose up --build
 ```
 
 ##### Run manage.py command directly:
-```sh
+
+```
 docker-compose exec web ./manage.py <command>
 ```
 
 ### Develop!
 
-Have at it! Feel free to explore the [API docs](https://github.com/hackoregon/housing-17/tree/backend/docs/API.md)
+Have at it!
+
+View the API GUI at localhost:8000.
+
+Feel free to explore the [API docs](https://github.com/hackoregon/housing-17/tree/backend/docs/API.md).

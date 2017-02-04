@@ -10,8 +10,7 @@ services:
 
   web:
     build: .
-    command: ./startserver.sh
-    # command: ./manage.py runserver
+    command: ./start-dev-server.sh
     volumes:
       - ./backend:/code
     ports:
