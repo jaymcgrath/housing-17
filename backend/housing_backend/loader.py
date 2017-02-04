@@ -6,7 +6,7 @@ This script is meant to be used with this specific dataset
 https://drive.google.com/file/d/0B0810KzsNR3mUDkzdERQNmc3U00/view?usp=sharing
 """
 
-dframe = pd.read_csv('/provision/SoHAffordabilityDatabyNeighborhoodUpload.csv')
+dframe = pd.read_csv('/data/SoHAffordabilityDatabyNeighborhoodUpload.csv')
 
 ry,_ = ReportYear.objects.get_or_create(year=2016)
 ry.save()
