@@ -1,0 +1,28 @@
+version: '2.1'
+
+
+services:
+
+  db:
+    image: postgres:9.5.5
+    networks:
+      - backend
+
+  web:
+    build: .
+    command: ./startserver.sh
+    # command: ./manage.py runserver
+    volumes:
+      - ./backend:/code
+    ports:
+      - "8000:8000"
+    networks:
+      - backend
+    depends_on:
+      - db
+
+
+networks:
+
+  backend:
+    driver: bridge
