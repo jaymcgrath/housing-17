@@ -7,11 +7,14 @@ In the meantime...
 
 ### Requirements
 
+If you are using a recent Mac, Windows 10 Professional, or Linux, you only need
+Docker:
+
 * [Docker](https://www.docker.com/products/overview)
 
-Unless you have a recent Mac, Windows 10 Professional, or Linux, you'll have
-to use Docker Toolbox, which is temperamental and not covered here. As a
-workaround, you can run Docker in a Vagrant box using these tools:
+If you are not using a recent Mac, Windows 10 Professional, or Linux, you'll
+have need to use either Docker Toolbox, which is temperamental and not covered,
+or run Docker in a Vagrant box, provided here:
 
 * [Vagrant](https://www.vagrantup.com/downloads.html)
 * [Virtualbox](https://www.virtualbox.org/wiki/Downloads)
@@ -20,12 +23,12 @@ workaround, you can run Docker in a Vagrant box using these tools:
 ### Download
 
 Clone the repository from the command line:
-```sh
+```
 $ git clone git@github.com:hackoregon/housing-17.git
 ```
 
 Navigate to the backend branch:
-```sh
+```
 $ cd housing-17
 $ git fetch origin backend
 $ git checkout backend
