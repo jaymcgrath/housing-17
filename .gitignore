@@ -139,3 +139,4 @@ fabric.properties
 backend/housing_backend/migrations/*
 db.sqlite3
 local_settings.py
+backend/static

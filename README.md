@@ -1,146 +1,101 @@
-# housing-17 
-(a template for a README.md follows...)
+# Back-End Branch
 
-# Project Title
+This branch contains functionality for the database and API. It will be eventually be merged with `master`.
 
 Our goal is to create a tool that allows the public to easily understand and explore the state of housing in Portland.
+In the meantime...
 
 ### Requirements
 
-* [Python 3.5.x](https://www.python.org/downloads/)
-* [Virtualenv](https://virtualenv.pypa.io/en/stable/installation/)
+* [Docker](https://www.docker.com/products/overview)
 
-### Installing
+Unless you have a recent Mac, Windows 10 Professional, or Linux, you'll have
+to use Docker Toolbox, which is temperamental and not covered here. As a
+workaround, you can run Docker in a Vagrant box using these tools:
 
-1. Clone the repository from the command line with:
+* [Vagrant](https://www.vagrantup.com/downloads.html)
+* [Virtualbox](https://www.virtualbox.org/wiki/Downloads)
+* [Vagrant for Docker](https://github.com/JohnTasto/vagrant-for-docker)
 
-```
-git clone git@github.com:hackoregon/housing-17.git
+### Download
 
-```
-
-Navigate to the backend branch
-
-```
-cd housing-17
-git fetch origin backend
-git checkout backend
+Clone the repository from the command line:
+```sh
+$ git clone git@github.com:hackoregon/housing-17.git
 ```
 
-2. Start a new python virtual environment:
-
-```
-virtualenv venv
-```
-
-3. Activate your new environment
-
-```
-source venv/bin/activate
+Navigate to the backend branch:
+```sh
+$ cd housing-17
+$ git fetch origin backend
+$ git checkout backend
 ```
 
-3. Install necessary Python Libraries
+### Run
 
-```pip install -r requirements.txt```
+#### Bash/Zsh/etc
 
-4. Navigate to project directory and make database migrations.
-
-```
-cd backend/
-./manage.py migrate
+##### Start:
+```sh
+$ ./dj.sh up
 ```
 
-5. Load data into database from csv file. Right now the csv file exists [here](https://drive.google.com/file/d/0B0810KzsNR3mUDkzdERQNmc3U00/view?usp=sharing).
+##### Shutdown:
+```sh
+$ ./dj.sh down
+  # or
+$ ./dj.sh down --rmi   # remove images to save disk space
+```
 
-In Command line:
+##### Rebuild images (necessary if `requirements.txt` changes):
+```sh
+$ ./dj.sh down   # (if not already shut down)
+$ ./dj.sh up --build
+```
 
-```./manage.py shell```
+##### Run manage.py command directly:
+```sh
+$ ./dj.sh manage <command>
+```
 
-In Python shell:
+#### Windows (or Bash/Zsh/etc....)
 
-```import housing_backend.loader```
+##### Start:
 
-It'll ask you where the csv you downloaded is, give it the whole path
+Run Django and PostgreSQL detached (running in the background):
+```sh
+$ docker-compose up -d
+```
 
-ex. ```/Users/MyComp/Downloads/Neighborhoods.csv```
+Migrate database:
+```sh
+docker-compose exec web ./manage.py migrate
+```
 
+Load data:
+```sh
+docker-compose exec web ./manage.py shell --command="import housing_backend.loader"
+```
 This might take a little while since we're loading the data into the database.
 
-Then to exit the python shell enter:
-
-```
-exit()
-```
-
-6. Run the development server
-
-```
-./manage.py runserver
+##### Shutdown:
+```sh
+$ docker-compose down
+  # or
+$ docker-compose down --rmi all   # remove images to save disk space
 ```
 
-7. Have at it! Feel free to explore the [API docs](https://github.com/hackoregon/housing-17/tree/backend/docs/API.md)
-
-
-##### When you're done:
- 1. Press ```ctrl + c``` to kill the dev server
- 2. Enter ```deactivate``` at the command line to deactivate your virtual environments.
-##### When you want to reactivate from the housing-17 directory:
-```
-source venv/bin/activate
-cd backend
-./manage runserver
+##### Rebuild images (necessary if `requirements.txt` changes):
+```sh
+$ docker-compose down   # (if not already shut down)
+$ docker-compose up --build
 ```
 
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
+##### Run manage.py command directly:
+```sh
+docker-compose exec web ./manage.py <command>
 ```
 
-### And coding style tests
+### Develop!
 
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+Have at it! Feel free to explore the [API docs](https://github.com/hackoregon/housing-17/tree/backend/docs/API.md)
