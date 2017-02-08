@@ -9,7 +9,8 @@ from craigslist import CraigslistHousing
 
 
 class PDXCraigslistHousing(CraigslistHousing):
-    """
+    """Scrape Portland, OR craigslist housing listings.
+
     Subclasses generic CL Housing scraper, customized to point at PDX metro
     This casts a wide-ish net, and will need some location filtering
 
@@ -33,7 +34,7 @@ class PDXCraigslistHousing(CraigslistHousing):
 
             # Get the bedrooms baths sqft badges
             badges = soup.find('p', {'class': 'attrgroup'}).get_text()
-            print(badges)
+
             if badges:
                 try:
                     num_br = re.search(r'(?P<num_br>\d+)BR', badges).group('num_br')
@@ -87,7 +88,7 @@ def todays_listings():
     custom_filters = dict(postedToday=1, collapseDuplicates=1)
     scraper.filters.update(custom_filters)
 
-    return(scraper.get_results(sort_by='newest', geotagged=True))
+    return scraper.get_results(sort_by='newest', geotagged=True)
 
 
 
