@@ -3,37 +3,51 @@
 
 # Project Title
 
-One Paragraph of project description goes here
+Our goal is to create a tool that allows the public to easily understand and explore the state of housing in Portland.
 
-## Getting Started
+### Requirements
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
-### Prerequisites
-
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
+* Python 3.5
+* Django 1.10
 
 ### Installing
 
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
-
+1. Clone the repository from the command line with:
+```git clone git@github.com:hackoregon/housing-17.git```
+2. Start a new python virtual environment:
 ```
-Give the example
+virtualenv venv
 ```
-
-And repeat
-
+3. Activate your new environment
 ```
-until finished
+source venv/bin/activate
 ```
+3. Install necessary Python Libraries
+```pip install -r requirements.txt```
+4. Navigate to project directory and make database migrations.
+```
+cd backend
+./manage migrate
+```
+5. Load data into database from csv file.
+#TODO: where to pull data from?
+#TODO: script that will load data into database for you?
+6. Run the development server
+```
+./manage runserver
+```
+7. Have at it! Feel free to explore the [API docs](#)
+#TODO: write API Docs
 
-End with an example of getting some data out of the system or using it for a little demo
+##### When you're done:
+ 1. Press ```ctrl + c``` to kill the dev server
+ 2. Enter ```deactivate``` at the command line to deactivate your virtual environments.
+##### When you want to reactivate from the housing-17 directory:
+```
+source venv/bin/activate
+cd backend
+./manage runserver
+```
 
 ## Running the tests
 
