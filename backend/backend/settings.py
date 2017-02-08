@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'housing_backend.apps.HousingBackendConfig',
     'scrape',
+    'django_cron',
     'rest_framework',
 ]
 
@@ -48,6 +49,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+# Classes used by django_cron
+CRON_CLASSES = [
+    "scrape.cron.DailyScraperCronJob",
 ]
 
 ROOT_URLCONF = 'backend.urls'
