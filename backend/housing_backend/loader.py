@@ -28,14 +28,55 @@ def loadAffordability(file):
             aff = True
         elif row['Affordable_ind'] == 'N':
             aff = False
-            a = Affordable(
-                affordable=aff,
-                demographic=d,
-                housing_size=h,
-                neighborhood=n,
-            )
-            a.save()
+
+        a = Affordable(
+            affordable=aff,
+            demographic=d,
+            housing_size=h,
+            neighborhood=n,
+        )
+        a.save()
+
+# Black demographic isnt loading in correctly - STILL NEEDS WORKS
+def loadDemographics(file):
+    dframe = pd.read_csv(file)
+
+    for index, row in dframe.iterrows():
+        demo, _ = Demographic.objects.get_or_create(
+                name=row['DP_TITLE'],
+                income_median=row['DP_INCOME_MEDIAN'],
+                housing_budget=row['DP_HOUSINGBUDGET'],
+                per_with_children=row['DP_PERCENT_WITH_CHILDREN'],
+                household_comp=row['DP_HOUSEHOLD_COMP']
+        )
+        demo.save()
+
+def loadNeighborhoodRent(file):
+    dframe = pd.read_csv(file)
+
+    for index, row in dframe.iterrows():
+        rent, _ = NeighborhoodRent.objects.get_or_create(
+                nh_id=row['NP_ID'],
+                housing_size=row['NHM_UnitSize'],
+                rent_amt=row['NHM_Rent_Amt']
+        )
+        rent.save()
+
+def loadNeighborhoodProfiles(file):
+    dframe = pd.read_csv(file)
+
+    for index, row in dframe.iterrows():
+        profile, _ = NeighborhoodRent.objects.get_or_create(
+                nh_id=row['NP_Title']
+        )
+        profile.save()
 
 ### MAIN ###
-file = input('What is the absolute path to the downloaded csv file?: ')
-loadAffordability(file)
+fileDemo = "/Users/ericalmadova1/hack_oregon_projects/housing/housing-17/backend/housing_backend/demographic_profiles.csv"
+fileNeighborhoods = "/Users/ericalmadova1/hack_oregon_projects/housing/housing-17/backend/housing_backend/NeighborhoodProfiles.csv"
+fileAfford = "/Users/ericalmadova1/hack_oregon_projects/housing/housing-17/backend/housing_backend/affordability.csv"
+fileRent = "/Users/ericalmadova1/hack_oregon_projects/housing/housing-17/backend/housing_backend/NeighborhoodHousingMarket.csv"
+loadDemographics(fileDemo)
+loadAffordability(fileAfford)
+#loadNeighborhoodProfiles(fileNeighborhoods)
+#loadNeighborhoodRent(fileRent)
