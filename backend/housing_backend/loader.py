@@ -5,9 +5,8 @@ from django.conf import settings
 This script is meant to be used with this specific dataset
 https://drive.google.com/file/d/0B0810KzsNR3mUDkzdERQNmc3U00/view?usp=sharing
 """
-file = input('What is the absolute path to the downloaded csv file?: ')
 
-dframe = pd.read_csv(file)
+dframe = pd.read_csv('/data/SoHAffordabilityDatabyNeighborhoodUpload.csv')
 
 ry,_ = ReportYear.objects.get_or_create(year=2016)
 ry.save()
