@@ -29,6 +29,7 @@ def loadAffordability(file):
         elif row['Affordable_ind'] == 'N':
             aff = False
 
+
         a = Affordable(
             affordable=aff,
             demographic=d,
@@ -71,6 +72,8 @@ def loadNeighborhoodProfiles(file):
         )
         profile.save()
 
+# TODO: Standardize place to load data csv from - maybe load it from AWS S3? Right now it's just set up for Eric's local environment
+     
 ### MAIN ###
 fileDemo = "/Users/ericalmadova1/hack_oregon_projects/housing/housing-17/backend/housing_backend/demographic_profiles.csv"
 fileNeighborhoods = "/Users/ericalmadova1/hack_oregon_projects/housing/housing-17/backend/housing_backend/NeighborhoodProfiles.csv"
