@@ -18,16 +18,26 @@ class DailyScraperCronJob(CronJobBase):
 
     """
 
-    RUN_AT_TIMES = ['11:30'] # Run once daily at 11:30 AM
+    RUN_AT_TIMES = ['11:30']  # Run once daily at 11:30 AM
     schedule = Schedule(run_at_times=RUN_AT_TIMES)
     code = 'scrape.daily_scrape_cron_job'  # a unique code
 
-    def do(self):
-        """ Create a scraper for only today's results and save each result as CraigslistPosting model instance """
+    @staticmethod
+    def clean_price(price):
+        """ Remove non-digit characters from price. """
+        match = re.search(r'^\$?(?P<digits>[0-9]+)', price)
+        return match.group('digits')
 
-        # Helper function, creates a pre-configured scraper and returns a generator of listings.
+    def do(self, listing_source=todays_listings):
+        """ Create a scraper for only today's results and save each result as CraigslistPosting model instance
 
-        for listing in todays_listings():
+        :param: listing_source: generator function of listings to iterate over
+
+        """
+
+        # Iterate over listings, save each one to django Model
+
+        for listing in listing_source():
             """Save each listing to database and sleep before processing the next one"""
 
             # TODO - Look up relevant portland neighborhood using GIS and census housing track shapefiles
@@ -35,7 +45,7 @@ class DailyScraperCronJob(CronJobBase):
             # Web data is messy - just log errors and move on to the next listing
             try:
                 # Strip dollar sign and possible trailing cents from the rent amount:
-                clean_price = re.sub(r'^\$?([0-9]+)', r'\1', listing['price'])
+                cleaned_price = self.clean_price(listing['price'])
 
                 # Get lat, lon if available, otherwise set to null
                 try:
@@ -46,7 +56,7 @@ class DailyScraperCronJob(CronJobBase):
                 # Build kwargs dict
                 listing_attrs = {
                     'listed_on': listing['datetime'],
-                    'rent': clean_price,
+                    'rent': cleaned_price,
                     'cl_id': listing['id'],
                     'bedrooms': listing['bedrooms'],
                     'bathrooms': listing['bathrooms'],
