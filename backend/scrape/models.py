@@ -38,7 +38,7 @@ class CraigslistPosting(models.Model):
     def __str__(self):
         """ Return useful representation of a for-rent ad"""
 
-        template = "[{tm}]{br}BR {bt}BA, {sq}sqft: ${rn}"
+        template = "[{tm}]{br} BR {bt} BA, {sq} sqft: ${rn}"
         return template.format(
             tm=self.listed_on,
             br=self.bedrooms,
@@ -50,7 +50,7 @@ class CraigslistPosting(models.Model):
     def __repr__(self):
         """ Return useful representation of a for-rent ad"""
 
-        template = "[{tm}]{br}BR {bt}BA, {sq}sqft: ${rn}"
+        template = "[{tm}]{br} BR {bt} BA, {sq} sqft: ${rn}"
         return template.format(
             tm=self.listed_on,
             br=self.bedrooms,
