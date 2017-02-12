@@ -1,6 +1,8 @@
 import pandas as pd
 from .models import *
 from django.conf import settings
+import requests
+import io
 """
 This script is meant to be used with this specific dataset
 https://drive.google.com/file/d/0B0810KzsNR3mUDkzdERQNmc3U00/view?usp=sharing
@@ -75,10 +77,10 @@ def loadNeighborhoodProfiles(file):
 # TODO: Standardize place to load data csv from - maybe load it from AWS S3? Right now it's just set up for Eric's local environment
      
 ### MAIN ###
-fileDemo = "/Users/ericalmadova1/hack_oregon_projects/housing/housing-17/backend/housing_backend/demographic_profiles.csv"
-fileNeighborhoods = "/Users/ericalmadova1/hack_oregon_projects/housing/housing-17/backend/housing_backend/NeighborhoodProfiles.csv"
-fileAfford = "/Users/ericalmadova1/hack_oregon_projects/housing/housing-17/backend/housing_backend/affordability.csv"
-fileRent = "/Users/ericalmadova1/hack_oregon_projects/housing/housing-17/backend/housing_backend/NeighborhoodHousingMarket.csv"
+fileDemo = "https://raw.githubusercontent.com/hackoregon/housing-17/datasources/DemographicProfiles.csv
+fileNeighborhoods = "https://raw.githubusercontent.com/hackoregon/housing-17/datasources/NeighborhoodProfiles.csv"
+fileAfford = "https://raw.githubusercontent.com/hackoregon/housing-17/datasources/SoHAffordabilityDatabyNeighborhoodUpload.csv"
+fileRent = "https://raw.githubusercontent.com/hackoregon/housing-17/datasources/NeighborhoodHousingMarket.csv"
 loadDemographics(fileDemo)
 loadAffordability(fileAfford)
 #loadNeighborhoodProfiles(fileNeighborhoods)
