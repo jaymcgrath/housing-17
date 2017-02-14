@@ -77,7 +77,7 @@ def loadNeighborhoodProfiles(file):
 # TODO: Standardize place to load data csv from - maybe load it from AWS S3? Right now it's just set up for Eric's local environment
      
 ### MAIN ###
-fileDemo = "https://raw.githubusercontent.com/hackoregon/housing-17/datasources/DemographicProfiles.csv
+fileDemo = "https://raw.githubusercontent.com/hackoregon/housing-17/datasources/DemographicProfiles.csv"
 fileNeighborhoods = "https://raw.githubusercontent.com/hackoregon/housing-17/datasources/NeighborhoodProfiles.csv"
 fileAfford = "https://raw.githubusercontent.com/hackoregon/housing-17/datasources/SoHAffordabilityDatabyNeighborhoodUpload.csv"
 fileRent = "https://raw.githubusercontent.com/hackoregon/housing-17/datasources/NeighborhoodHousingMarket.csv"
