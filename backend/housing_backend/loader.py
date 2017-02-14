@@ -13,16 +13,12 @@ https://drive.google.com/file/d/0B0810KzsNR3mUDkzdERQNmc3U00/view?usp=sharing
 def loadAffordability(file):
     dframe = pd.read_csv(file)
 
-    ry,_ = ReportYear.objects.get_or_create(year=2016)
-    ry.save()
-
-    for neighborhood in dframe.Neighborhood.unique():
-        Neighborhood(name=neighborhood, report_year=ry)
-
     for index, row in dframe.iterrows():
+        ry, _ = ReportYear.objects.get_or_create(year=row['Year'])
+        n, _ = Neighborhood.objects.get_or_create(name=row['Neighborhood'],report_year=ry)
         d, _ = Demographic.objects.get_or_create(name=row['Demographic'])
         h, _ = HousingSize.objects.get_or_create(household_type=row['Unit_Size'])
-        n, _ = Neighborhood.objects.get_or_create(name=row['Neighborhood'],report_year=ry)
+        ry.save()
         d.save()
         h.save()
         n.save()
