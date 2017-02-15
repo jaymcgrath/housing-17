@@ -6,6 +6,8 @@ import random
 import re
 from time import sleep
 
+from django.db import IntegrityError
+
 from django_cron import CronJobBase, Schedule
 
 from .models import CraigslistPosting
@@ -70,8 +72,12 @@ class DailyScraperCronJob(CronJobBase):
                 }
 
                 this_posting = CraigslistPosting(**listing_attrs)
-                this_posting.save()
-                print("saved", this_posting)
+                try:
+                    this_posting.save()
+                    print("saved", this_posting)
+                except IntegrityError:
+                    # Record already in database or malformed. Ignore and move to next one
+                    pass
             except:
                 logging.exception('')
 
