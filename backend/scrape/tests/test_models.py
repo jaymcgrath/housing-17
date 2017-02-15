@@ -45,20 +45,15 @@ class CraigslistPostingTest(TestCase):
         self.assertTrue(isinstance(p, CraigslistPosting))
         self.assertEqual(p.bathrooms, None)
 
-    def test_craisglist_posting_creation_no_cl_id(self):
-        # Verify bathroom field accepts null value.
-        p = self.create_craigslist_posting(cl_id=None)
-        self.assertTrue(isinstance(p, CraigslistPosting))
-        self.assertEqual(p.cl_id, None)
 
     def test_craisglist_posting_creation_no_lat(self):
-        # Verify bathroom field accepts null value.
+        # Verify lat field accepts null value.
         p = self.create_craigslist_posting(lat=None)
         self.assertTrue(isinstance(p, CraigslistPosting))
         self.assertEqual(p.lat, None)
 
     def test_craisglist_posting_creation_no_lon(self):
-        # Verify bathroom field accepts null value.
+        # Verify lon field accepts null value.
         p = self.create_craigslist_posting(lon=None)
         self.assertTrue(isinstance(p, CraigslistPosting))
         self.assertEqual(p.lon, None)
