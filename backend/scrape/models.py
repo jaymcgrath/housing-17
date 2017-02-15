@@ -25,7 +25,7 @@ class CraigslistPosting(models.Model):
     created_on = models.DateTimeField(auto_now_add=True, help_text='when the record was created')
     listed_on = models.DateTimeField(help_text='when the craigslist listing was posted')
     rent = models.IntegerField(help_text='monthly rent')
-    cl_id = models.BigIntegerField(null=True, help_text='craigslist ID of listing')
+    cl_id = models.BigIntegerField(unique=True, help_text='craigslist ID of listing')
     # DecimalField to handle 1.5 bedroom or bathroom designations
     bedrooms = models.DecimalField(null=True, max_digits=3, decimal_places=1, help_text='number of bedrooms')
     bathrooms = models.DecimalField(null=True, max_digits=3, decimal_places=1, help_text='number of bathrooms')
