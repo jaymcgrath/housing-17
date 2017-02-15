@@ -1,5 +1,5 @@
 import pytest
-from django.db import transaction
+from django.db import transaction, IntegrityError
 from django.test import TestCase
 
 from scrape.cron import DailyScraperCronJob
@@ -66,7 +66,7 @@ class DailyScraperCronJobTest(TestCase):
 
 
 class DailyScraperCronJobTestBadData(TestCase):
-
+    """ Test that scraper will continue after encountering a corrupted listing """
     def create_daily_scraper_cron(self, *args, **kwargs):
         return DailyScraperCronJob()
 
@@ -97,7 +97,6 @@ class DailyScraperCronJobTestBadData(TestCase):
         count_after = CraigslistPosting.objects.count()
 
         self.assertEqual(count_before, count_after, "Fixture with Null id data should not be saved")
-
 
     def test_daily_scraper_do_method_handles_empty_lat_lon(self):
         c = self.create_daily_scraper_cron()
@@ -137,6 +136,41 @@ class DailyScraperCronJobTestBadData(TestCase):
                          "CraigslistPosting object title should equal test fixture title")
         self.assertEqual((this_obj.lat, this_obj.lon), (None, None),
                          "CraigslistPosting object lat lon should be null")
+
+class TestDailyScraperDuplicateCLID(TestCase):
+    """ Test that a duplicate listing insertion exception will be handle"""
+
+    def create_daily_scraper_cron(self, *args, **kwargs):
+        return DailyScraperCronJob()
+
+    def test_duplicate_cl_id_exception_handled(self):
+        """ Test that cron job handles duplicate insertions gracefully """
+        c = self.create_daily_scraper_cron()
+
+        test_listings = ({
+                             'where': '1515 SE 31St Ave, Portland, OR 97214',
+                             'datetime': '2017-02-07 18:04',
+                             'price': '$1399',
+                             'has_map': True,
+                             'id': '5994219642',
+                             'bathrooms': '1',
+                             'name': '\u260e Schedule a Tour Starbucks Gift Card!*',
+                             'bedrooms': '1',
+                             'geotag': (45.511926, -122.633901),
+                             'sq_ft': '511',
+                             'has_image': True,
+                             'url': 'http://portland.craigslist.org/mlt/apa/5994219642.html'
+                         },)
+
+        # do method expects a generator as input, so pass in a lambda serving the test fixture
+        c.do(listing_source=lambda: test_listings)
+
+        # try to insert the same record again, should raise an error
+        self.assertRaises(IntegrityError, c.do(listing_source=lambda: test_listings),  "Should raise Attribute Error")
+
+
+
+
 
 
 
