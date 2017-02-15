@@ -1,6 +1,9 @@
-from django.test import TestCase
-from scrape.models import CraigslistPosting
 from datetime import datetime, timezone
+
+from django.test import TestCase
+
+from scrape.models import CraigslistPosting
+
 
 # models test
 class CraigslistPostingTest(TestCase):

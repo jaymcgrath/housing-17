@@ -24,7 +24,6 @@ class PDXCraigslistHousing(CraigslistHousing):
         Add custom/delete/alter fields to result.
         Here, we get # bedrooms, baths, and sqft
         """
-
         response = requests_get(result['url'], logger=self.logger)
         self.logger.info('GET %s', response.url)
         self.logger.info('Response code: %s', response.status_code)
@@ -33,7 +32,11 @@ class PDXCraigslistHousing(CraigslistHousing):
             soup = BeautifulSoup(response.content, 'html.parser')
 
             # Get the bedrooms baths sqft badges
-            badges = soup.find('p', {'class': 'attrgroup'}).get_text()
+            try:
+                badges = soup.find('p', {'class': 'attrgroup'}).get_text()
+            except AttributeError:
+                raise AttributeError('Unable to find correct html elements in page (p tag with class "attrgroup")')
+
 
             if badges:
                 try:

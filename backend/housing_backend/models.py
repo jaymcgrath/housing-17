@@ -8,7 +8,12 @@ class Affordable(models.Model):
     neighborhood = models.ForeignKey('Neighborhood', on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.demographic) + str(self.housing_size) + str(self.neighborhood)
+        template = "{dm} {sz} {nh}"
+        return template.format(dm=self.demographic, sz=self.housing_size, nh=self.neighborhood)
+
+    def __repr__(self):
+        template = "{dm} {sz} {nh}"
+        return template.format(dm=self.demographic, sz=self.housing_size, nh=self.neighborhood)
 
 
 class Demographic(models.Model):
@@ -17,11 +22,17 @@ class Demographic(models.Model):
     def __str__(self):
         return self.name
 
+    def __repr__(self):
+        return self.name
+
 
 class HousingSize(models.Model):
     household_type = models.CharField(max_length=50)
 
     def __str__(self):
+        return self.household_type
+
+    def __repr__(self):
         return self.household_type
 
 
@@ -32,9 +43,15 @@ class Neighborhood(models.Model):
     def __str__(self):
         return self.name
 
+    def __repr__(self):
+        return self.name
+
 
 class ReportYear(models.Model):
     year = models.IntegerField()
 
     def __str__(self):
+        return str(self.year)
+
+    def __repr__(self):
         return str(self.year)

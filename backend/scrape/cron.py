@@ -1,13 +1,15 @@
 """
 Cron classes for scheduling craigslist scraper
 """
-from django_cron import CronJobBase, Schedule
-from .scrapers import todays_listings
-from .models import CraigslistPosting
-from time import sleep
+import logging
 import random
 import re
-import logging
+from time import sleep
+
+from django_cron import CronJobBase, Schedule
+
+from .models import CraigslistPosting
+from .scrapers import todays_listings
 
 
 class DailyScraperCronJob(CronJobBase):
@@ -69,19 +71,10 @@ class DailyScraperCronJob(CronJobBase):
 
                 this_posting = CraigslistPosting(**listing_attrs)
                 this_posting.save()
+                print("saved", this_posting)
             except:
                 logging.exception('')
 
-
-            print("saved", this_posting)
-
-            # Sleep randomly betwen 0 and 2 seconds
+            #  Sleep randomly betwen 0 and 2 seconds
             sleep_seconds = random.random() * 2
-            sleep(sleep_seconds) # Zzzz
-
-
-
-
-
-
-
+            sleep(sleep_seconds)  # Zzzz
