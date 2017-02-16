@@ -47,7 +47,6 @@ coverage.xml
 *,cover
 .hypothesis/
 
-
 # Translations
 *.mo
 *.pot
@@ -148,3 +147,4 @@ backend/scrape/shapes/*
 *secrets*
 backend/secrets/*
 
+backend/static
