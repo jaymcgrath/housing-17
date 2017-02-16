@@ -17,7 +17,7 @@ If you are using an older version of Windows, you'll have need to use either Doc
 
 ## Working with Git
 
-### Set up repositories
+### Set up repositories:
 
 From GitHub, fork the Repo at [https://github.com/hackoregon/housing-backend](https://github.com/hackoregon/housing-backend).
 
@@ -37,7 +37,7 @@ $ git remote add git@github.com:hackoregon/housing-backend.git
 $ git remote add upstream https://github.com/hackoregon/housing-backend.git
 ```
 
-### Do some coding
+### Do some coding:
 
 Make a feature branch:  
 [optional]
@@ -61,7 +61,7 @@ git checkout master
 git rebase <branchname>
 ```
 
-### Submit changes back to Github
+### Submit changes back to Github:
 
 Download changes other's may have made and merge with your changes:
 ```
