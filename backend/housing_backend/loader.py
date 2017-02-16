@@ -3,12 +3,6 @@ from .models import *
 from django.conf import settings
 import requests
 import io
-"""
-This script is meant to be used with this specific dataset
-https://drive.google.com/file/d/0B0810KzsNR3mUDkzdERQNmc3U00/view?usp=sharing
-"""
-#TODO:
-#   (1/31) - Update to take in new csv files: NeighborhoodProfiles, NeighborhoodHousingMarket and Demographic profiles
 
 def loadAffordability(file):
     dframe = pd.read_csv(file)
@@ -36,7 +30,6 @@ def loadAffordability(file):
         )
         a.save()
 
-# Black demographic isnt loading in correctly - STILL NEEDS WORKS
 def loadDemographics(file):
     dframe = pd.read_csv(file)
 
@@ -54,9 +47,15 @@ def loadNeighborhoodRent(file):
     dframe = pd.read_csv(file)
 
     for index, row in dframe.iterrows():
+        ry, _ = ReportYear.objects.get_or_create(year=row['NHM_ReportYear'])
+        n, _ = Neighborhood.objects.get_or_create(name=row['NP_ID'],report_year=ry)
+        h, _ = HousingSize.objects.get_or_create(household_type=row['NHM_UnitSize'])
+        ry.save()
+        n.save()
+        h.save()
         rent, _ = NeighborhoodRent.objects.get_or_create(
-                nh_id=row['NP_ID'],
-                housing_size=row['NHM_UnitSize'],
+                nh_id=n,
+                housing_size=h,
                 rent_amt=row['NHM_Rent_Amt']
         )
         rent.save()
@@ -65,12 +64,13 @@ def loadNeighborhoodProfiles(file):
     dframe = pd.read_csv(file)
 
     for index, row in dframe.iterrows():
-        profile, _ = NeighborhoodRent.objects.get_or_create(
-                nh_id=row['NP_Title']
+        ry, _ = ReportYear.objects.get_or_create()
+        profile, _ = Neighborhood.objects.get_or_create(
+                name=row['NP_Title'],
+                report_year=ry
         )
         profile.save()
 
-# TODO: Standardize place to load data csv from - maybe load it from AWS S3? Right now it's just set up for Eric's local environment
      
 ### MAIN ###
 fileDemo = "https://raw.githubusercontent.com/hackoregon/housing-17/datasources/DemographicProfiles.csv"
@@ -78,6 +78,6 @@ fileNeighborhoods = "https://raw.githubusercontent.com/hackoregon/housing-17/dat
 fileAfford = "https://raw.githubusercontent.com/hackoregon/housing-17/datasources/SoHAffordabilityDatabyNeighborhoodUpload.csv"
 fileRent = "https://raw.githubusercontent.com/hackoregon/housing-17/datasources/NeighborhoodHousingMarket.csv"
 loadDemographics(fileDemo)
+loadNeighborhoodProfiles(fileNeighborhoods)
 loadAffordability(fileAfford)
-#loadNeighborhoodProfiles(fileNeighborhoods)
-#loadNeighborhoodRent(fileRent)
+loadNeighborhoodRent(fileRent)

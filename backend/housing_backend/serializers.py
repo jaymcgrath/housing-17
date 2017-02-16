@@ -33,9 +33,9 @@ class AffordableSerializer(serializers.ModelSerializer):
 
 class RentSerializer(serializers.ModelSerializer):
     housing_size = HousingSizeSerializer()
-    neighborhood = NeighborhoodSerializer()
+    nh_id = NeighborhoodSerializer()
 
     class Meta:
         model = NeighborhoodRent
-        fields = ('rent_amt', 'housing_size', 'neighborhood')
+        fields = ('rent_amt', 'housing_size', 'nh_id')
 
