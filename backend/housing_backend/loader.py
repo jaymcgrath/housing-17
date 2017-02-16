@@ -30,7 +30,6 @@ def loadAffordability(file):
         )
         a.save()
 
-# Black demographic isnt loading in correctly - STILL NEEDS WORKS
 def loadDemographics(file):
     dframe = pd.read_csv(file)
 
