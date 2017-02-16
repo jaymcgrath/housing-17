@@ -17,4 +17,5 @@ class TestAffordableListView:
         url = reverse('affordable_list')
         req = RequestFactory().get(url)
         resp = AffordableList.as_view()(req)
-        assert resp.status_code == 200, "Should be callable by anyone"
+        assert resp.status_code == 200, "Should be callable by all users"
+
