@@ -1,6 +1,5 @@
 # Hack Oregon Housing Project, 2016-2017
 This project will create a dynamic, educational portal that helps clarify the multifaceted and changing rental environment in PDX, with a focus on affordable rentals. The team will investigate what parts of town are currently affordable to a diverse spectrum of residents, and explore trends in how the Portland housing and rental market has changed over time, with a special emphasis on recent changes in the 7-year census gap. The project will approach common perceptions of the state of affordable rent in Portland with a range of digital, analytical, and creative strategies, with the overall goal of broadening insight on the experience of renting in Portland.
-
 The most current version of Team Housing's Vision Document / Elevator Pitch is maintained by Gabriele Hayden.
 
 ## Getting Started
