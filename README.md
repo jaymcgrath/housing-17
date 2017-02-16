@@ -1,7 +1,5 @@
 # Hack Oregon Housing Project, 2016-2017
 This project will create a dynamic, educational portal that helps clarify the multifaceted and changing rental environment in PDX, with a focus on affordable rentals. The team will investigate what parts of town are currently affordable to a diverse spectrum of residents, and explore trends in how the Portland housing and rental market has changed over time, with a special emphasis on recent changes in the 7-year census gap. The project will approach common perceptions of the state of affordable rent in Portland with a range of digital, analytical, and creative strategies, with the overall goal of broadening insight on the experience of renting in Portland.
-One Paragraph of project description goes here
-
 The most current version of Team Housing's Vision Document / Elevator Pitch is maintained by Gabriele Hayden.
 
 ## Getting Started
@@ -51,32 +49,80 @@ $ git checkout master
 
 ```
 
-
 ### Prerequisites
 
-What things you need to install the software and how to install them
+If you are running a recent edition of MacOS, Windows 10 Professional, or Linux, you need
+Docker and Git:
+
+* [Docker](https://www.docker.com/products/overview)
+* [Git](https://git-scm.com/)
+
+If you are not using a recent MacOS, Windows 10 Professional, or Linux, you'll
+have need to use either Docker Toolbox, which is temperamental and not covered,
+or run Docker in a Vagrant box, provided here:
+
+* [Vagrant](https://www.vagrantup.com/downloads.html)
+* [Vagrant for Docker](https://github.com/JohnTasto/vagrant-for-docker)
+* [Virtualbox](https://www.virtualbox.org/wiki/Downloads)
+
+### Services Development Environment
+
+##### Start:
+
+Run Django and PostgreSQL:
+```
+$ docker-compose up
+```
+
+You can also run it in the background:
+```
+$ docker-compose up -d
+```
+It looks like it starts faster this way, but give it a bit to import data into
+the database in the background before trying to view it in a browser.
+
+##### Shutdown:
 
 ```
-Give examples
+$ docker-compose down
+  # or
+$ docker-compose down --rmi all   # remove images to save disk space
 ```
 
-### Installing
-
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
+##### Rebuild images (necessary if `requirements.txt` changes):
 
 ```
-Give the example
+$ docker-compose down   # (if not already shut down)
+$ docker-compose up --build
 ```
 
-And repeat
+##### Container access examples:
+
+Run manage.py command directly:
 
 ```
-until finished
+docker-compose exec web ./manage.py <command>
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+Run the Python shell:
+
+```
+docker-compose exec web ./manage.py shell
+```
+
+Run the PostgreSQL shell:
+
+```
+docker-compose exec --user postgres db psql
+```
+
+### Develop!
+
+Have at it!
+
+View the API GUI at localhost:8000.
+
+Feel free to explore the [API docs](https://github.com/hackoregon/housing-17/tree/backend/docs/API.md).
 
 ## Running the tests
 
@@ -100,34 +146,37 @@ Give an example
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+See the DevOps page of the [Wiki](https://github.com/hackoregon/housing-17/wiki) for notes about how to deploy this on a live system
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+See the [Wiki](https://github.com/hackoregon/housing-17/wiki) for notes about the front-end, datbases, and web framework used for the project
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+All Hack Oregon projects are open source, built entirely by volunteers from our local community. Visit [Hack Oregon - Build With Us](http://www.hackoregon.org/join/) to learn more!
 
 ## Versioning
 
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
 
-## Authors
+## Core Team
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Adrienne Tilley** - *Design Lead*
+* **Bimal Rajbhandary** - *Domain Expert / Strategic Development*
+* **Avi Lundberg** - *Design Lead*
+* **David Daniel** - *Tech Lead*
+* **Derek Demaria** - *Front-end Lead*
+* **Gabriele Hayden** - *Facilitator / Strat Dev*
+* **Victoria James** - *Domain Expert / Strategic Development*
+* **Warren Friedland** - *Tech Lead*
+* **Kartik Nagappa** - *Design Lead*
+* **Riley Rustad** - *Tech Lead*
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+See also the list of [contributors](https://github.com/hackoregon/housing-17/contributors) who participated in this project.
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+* [Crop Compass](http://www.cropcompass.org/)
+* [PlotPDX](http://plotpdx.org)
+* [Programming to Progress](http://www.programmingtoprogress.org/)
