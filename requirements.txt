@@ -10,6 +10,7 @@ python-dateutil==2.6.0
 pytz==2016.10
 six==1.10.0
 requests==2.13.0
+django_rest_swagger==2.1.1
 
 psycopg2
 
