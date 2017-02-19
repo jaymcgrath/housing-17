@@ -1,6 +1,7 @@
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
+from unittest import TestCase
 from housing_backend.models import Demographic, Neighborhood, Affordable
 from mixer.backend.django import mixer
 
