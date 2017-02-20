@@ -1,9 +1,9 @@
+from django.test import TestCase, Client
 from django.urls import reverse
+from housing_backend.models import Affordable
+from mixer.backend.django import mixer
 from rest_framework import status
 from rest_framework.test import APITestCase
-from unittest import TestCase
-from housing_backend.models import Demographic, Neighborhood, Affordable
-from mixer.backend.django import mixer
 
 
 ## Merged in from ../tests.py
