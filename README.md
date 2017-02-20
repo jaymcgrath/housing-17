@@ -187,14 +187,14 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 * **Adrienne Tilley** - *Design Lead*
 * **Bimal Rajbhandary** - *Domain Expert / Strategic Development*
-* **Avi Lundberg** - *Design Lead*
 * **David Daniel** - *Tech Lead*
 * **Derek Demaria** - *Front-end Lead*
-* **Gabriele Hayden** - *Facilitator / Strat Dev*
+* **Gabriele Hayden** - *Facilitator / Strategic Development*
 * **Victoria James** - *Domain Expert / Strategic Development*
 * **Warren Friedland** - *Tech Lead*
 * **Kartik Nagappa** - *Design Lead*
 * **Riley Rustad** - *Tech Lead*
+* **Esme Miller** - *Research Lead*
 
 See also the list of [contributors](https://github.com/hackoregon/housing-17/contributors) who participated in this project.
 

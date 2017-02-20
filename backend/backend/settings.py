@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'housing_backend.apps.HousingBackendConfig',
     'scrape',
     'django_cron',
+    'rest_framework_swagger',
     'rest_framework',
 ]
 
