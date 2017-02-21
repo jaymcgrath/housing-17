@@ -137,6 +137,46 @@ class DailyScraperCronJobTestBadData(TestCase):
         self.assertEqual((this_obj.lat, this_obj.lon), (None, None),
                          "CraigslistPosting object lat lon should be null")
 
+    def test_daily_scraper_do_method_handles_empty_date(self):
+        c = self.create_daily_scraper_cron()
+
+        test_listings = ({
+                             'where': '1515 SE 31St Ave, Portland, OR 97214',
+                             'datetime': None,
+                             'price': '$1399',
+                             'has_map': True,
+                             'id': '5994219642',
+                             'bathrooms': '1',
+                             'name': '\u260e Schedule a Tour Starbucks Gift Card!*',
+                             'bedrooms': '1',
+                             'geotag': (45.511926, -122.633901),
+                             'sq_ft': '511',
+                             'has_image': True,
+                             'url': 'http://portland.craigslist.org/mlt/apa/5994219642.html'
+                         },)
+
+        # do method expects a generator as input, so pass in a lambda serving the test fixture
+        c.do(listing_source=lambda: test_listings)
+
+        # Retrieve CraisglistPosting instance created by cron.do()
+        this_obj = CraigslistPosting.objects.get(pk=1)
+
+        self.assertTrue(isinstance(this_obj, CraigslistPosting),
+                        "do method should save CraisglistPosting model instance")
+        self.assertEqual(this_obj.rent, int(c.clean_price(test_listings[0]['price'])),
+                         "CraigslistPosting object rent should equal cleaned test fixture price")
+        self.assertEqual(this_obj.bedrooms, float(test_listings[0]['bedrooms']),
+                         "CraigslistPosting object bedrooms should equal test fixture bedrooms")
+        self.assertEqual(this_obj.bathrooms, float(test_listings[0]['bathrooms']),
+                         "CraigslistPosting object bathrooms should equal test fixture bathrooms")
+        self.assertEqual(this_obj.sq_ft, int(test_listings[0]['sq_ft']),
+                         "CraigslistPosting object sq_ft should equal test fixture sq_ft")
+        self.assertEqual(this_obj.title, test_listings[0]['name'],
+                         "CraigslistPosting object title should equal test fixture title")
+        self.assertEqual((this_obj.lat, this_obj.lon), tuple(float(x) for x in test_listings[0]['geotag']),
+                         "CraigslistPosting object lat should equal test fixture lat")
+        self.assertIsNotNone(this_obj.listed_on, "listed_on should be auto-set to now() if bad or missing value")
+
 class TestDailyScraperDuplicateCLID(TestCase):
     """ Test that a duplicate listing insertion exception will be handle"""
 
