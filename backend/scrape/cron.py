@@ -13,6 +13,11 @@ from django_cron import CronJobBase, Schedule
 from .models import CraigslistPosting
 from .scrapers import todays_listings
 
+import datetime
+from django.utils import timezone
+
+
+
 
 class DailyScraperCronJob(CronJobBase):
     """ Scrape craigslist housing posts and add them to database
@@ -22,8 +27,8 @@ class DailyScraperCronJob(CronJobBase):
 
     """
 
-    RUN_AT_TIMES = ['11:30']  # Run once daily at 11:30 AM
-    schedule = Schedule(run_at_times=RUN_AT_TIMES)
+    RUN_EVERY_MINS = ['360']  # Run four times daily
+    schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
     code = 'scrape.daily_scrape_cron_job'  # a unique code
 
     @staticmethod
@@ -57,9 +62,17 @@ class DailyScraperCronJob(CronJobBase):
                 except TypeError:
                     lat, lon = None, None
 
+                # create TZ aware datetime - set TZ to UTC
+                try:
+                    listed_on = datetime.datetime.strptime(listing['datetime'], "%Y-%m-%d %H:%M")
+                    listed_on.replace(tzinfo=timezone.utc)
+                except (TypeError, ValueError):
+                    # Set the listing time to when it was scraped in the case of missing or bad data
+                    listed_on = datetime.datetime.now(tz=timezone.utc)
+
                 # Build kwargs dict
                 listing_attrs = {
-                    'listed_on': listing['datetime'],
+                    'listed_on': listed_on,
                     'rent': cleaned_price,
                     'cl_id': listing['id'],
                     'bedrooms': listing['bedrooms'],
