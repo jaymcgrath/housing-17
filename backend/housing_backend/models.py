@@ -14,7 +14,7 @@ class Affordable(models.Model):
 class NeighborhoodRent(models.Model):
     nh_id = models.ForeignKey('Neighborhood', on_delete=models.CASCADE)
     housing_size = models.ForeignKey('HousingSize', on_delete=models.CASCADE)
-    rent_amt = models.IntegerField()
+    rent_amt = models.IntegerField(default=0)
 
 class Demographic(models.Model):
     name = models.CharField(max_length=50)
@@ -44,7 +44,7 @@ class Neighborhood(models.Model):
 
 
 class ReportYear(models.Model):
-    year = models.IntegerField()
+    year = models.IntegerField(default=0)
 
     def __str__(self):
         return str(self.year)

@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'housing_backend.apps.HousingBackendConfig',
+    'rest_framework_swagger',
     'rest_framework',
 ]
 
