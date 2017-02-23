@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'housing_backend.apps.HousingBackendConfig',
+    'scrape',
+    'django_cron',
     'rest_framework_swagger',
     'rest_framework',
 ]
@@ -48,6 +50,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+# Classes used by django_cron
+CRON_CLASSES = [
+    "scrape.cron.DailyScraperCronJob",
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -124,7 +131,6 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
-
 
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)

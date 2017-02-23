@@ -1,6 +1,8 @@
 import django_filters
+
 from housing_backend.models import Affordable, NeighborhoodRent
 from housing_backend.serializers import AffordableSerializer, RentSerializer
+
 from rest_framework import generics
 
 class AffordableFilter(django_filters.rest_framework.FilterSet):
@@ -20,6 +22,7 @@ class AffordableList(generics.ListCreateAPIView):
 class AffordableDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Affordable.objects.all()
     serializer_class = AffordableSerializer
+
 
 class RentFilter(django_filters.rest_framework.FilterSet):
     rent_amt = django_filters.NumberFilter(name="rent_amt", lookup_expr="rent")

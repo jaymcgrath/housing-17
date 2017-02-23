@@ -6,9 +6,10 @@ from rest_framework_swagger.views import get_swagger_view
 schema_view = get_swagger_view(title='Pastebin API')
 
 urlpatterns = [
-    url(r'^affordable/$', views.AffordableList.as_view()),
-    url(r'^affordable/(?P<pk>[0-9]+)/$', views.AffordableDetail.as_view()),
-    url(r'^rent/$', views.RentList.as_view()),
+
+    url(r'^affordable/$', views.AffordableList.as_view(), name='affordable_list'),
+    url(r'^affordable/(?P<pk>[0-9]+)/$', views.AffordableDetail.as_view(), name='affordable_detail'),
+    url(r'^rent/$', views.RentList.as_view(), name='rent_list'),
     url(r'^$', schema_view),
 ]
 
