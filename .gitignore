@@ -40,6 +40,7 @@ htmlcov/
 .tox/
 .coverage
 .coverage.*
+.coverage*
 .cache
 nosetests.xml
 coverage.xml
@@ -139,4 +140,11 @@ fabric.properties
 backend/housing_backend/migrations/*
 db.sqlite3
 local_settings.py
+###  Shapefiles
+backend/scrape/shapes/*
+
+### Secrets
+*secrets*
+backend/secrets/*
+
 backend/static
