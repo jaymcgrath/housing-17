@@ -48,7 +48,7 @@ def loadNeighborhoodRent(file):
 
     for index, row in dframe.iterrows():
         ry, _ = ReportYear.objects.get_or_create(year=row['NHM_ReportYear'])
-        n, _ = Neighborhood.objects.get_or_create(name=row['NP_ID'],report_year=ry)
+        n, _ = Neighborhood.objects.get_or_create(id__exact=row['NP_ID'])
         h, _ = HousingSize.objects.get_or_create(household_type=row['NHM_UnitSize'])
         ry.save()
         n.save()
