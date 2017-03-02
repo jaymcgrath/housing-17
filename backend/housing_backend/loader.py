@@ -71,12 +71,12 @@ def loadNeighborhoodProfiles(file):
         )
         profile.save()
 
-     
+
 ### MAIN ###
-fileDemo = "https://raw.githubusercontent.com/hackoregon/housing-17/datasources/DemographicProfiles.csv"
-fileNeighborhoods = "https://raw.githubusercontent.com/hackoregon/housing-17/datasources/NeighborhoodProfiles.csv"
-fileAfford = "https://raw.githubusercontent.com/hackoregon/housing-17/datasources/SoHAffordabilityDatabyNeighborhoodUpload.csv"
-fileRent = "https://raw.githubusercontent.com/hackoregon/housing-17/datasources/NeighborhoodHousingMarket.csv"
+fileDemo = "https://raw.githubusercontent.com/hackoregon/housing-backend/datasources/DemographicProfiles.csv"
+fileNeighborhoods = "https://raw.githubusercontent.com/hackoregon/housing-backend/datasources/NeighborhoodProfiles.csv"
+fileAfford = "https://raw.githubusercontent.com/hackoregon/housing-backend/datasources/SoHAffordabilityDatabyNeighborhoodUpload.csv"
+fileRent = "https://raw.githubusercontent.com/hackoregon/housing-backend/datasources/NeighborhoodHousingMarket.csv"
 loadDemographics(fileDemo)
 loadNeighborhoodProfiles(fileNeighborhoods)
 loadAffordability(fileAfford)
