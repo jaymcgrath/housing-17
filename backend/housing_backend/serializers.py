@@ -21,6 +21,8 @@ class NeighborhoodSerializer(serializers.ModelSerializer):
     class Meta:
         model = Neighborhood
         exclude = ('id',)
+        depth = 1
+
 
 class AffordableSerializer(serializers.ModelSerializer):
     demographic = DemographicSerializer()
@@ -30,7 +32,6 @@ class AffordableSerializer(serializers.ModelSerializer):
     class Meta:
         model = Affordable
         fields = ('affordable', 'demographic', 'housing_size', 'neighborhood')
-
 
 class RentSerializer(serializers.ModelSerializer):
     housing_size = HousingSizeSerializer()

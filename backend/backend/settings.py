@@ -40,17 +40,26 @@ INSTALLED_APPS = [
     'django_cron',
     'rest_framework_swagger',
     'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# Turn on CORS headers for API urls only
+CORS_URLS_REGEX = r'^/housing_api/.*$'
+
+# Allow CORS from anywhere
+CORS_ORIGIN_ALLOW_ALL = True
+
 
 # Classes used by django_cron
 CRON_CLASSES = [
