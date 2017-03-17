@@ -3,6 +3,8 @@ from .models import *
 from django.conf import settings
 import requests
 import io
+import os
+
 
 def loadAffordability(file):
     dframe = pd.read_csv(file)
@@ -21,7 +23,6 @@ def loadAffordability(file):
         elif row['Affordable_ind'] == 'N':
             aff = False
 
-
         a = Affordable(
             affordable=aff,
             demographic=d,
@@ -29,6 +30,7 @@ def loadAffordability(file):
             neighborhood=n,
         )
         a.save()
+
 
 def loadDemographics(file):
     dframe = pd.read_csv(file)
@@ -43,10 +45,12 @@ def loadDemographics(file):
         )
         demo.save()
 
+
 def loadNeighborhoodRent(file):
     dframe = pd.read_csv(file)
 
     for index, row in dframe.iterrows():
+        print(row)
         ry, _ = ReportYear.objects.get_or_create(year=row['NHM_ReportYear'])
         n, _ = Neighborhood.objects.get_or_create(id__exact=row['NP_ID'])
         h, _ = HousingSize.objects.get_or_create(household_type=row['NHM_UnitSize'])
@@ -60,16 +64,58 @@ def loadNeighborhoodRent(file):
         )
         rent.save()
 
-def loadNeighborhoodProfiles(file):
-    dframe = pd.read_csv(file)
 
-    for index, row in dframe.iterrows():
-        ry, _ = ReportYear.objects.get_or_create()
-        profile, _ = Neighborhood.objects.get_or_create(
-                name=row['NP_Title'],
-                report_year=ry
-        )
-        profile.save()
+
+# """ Neighborhoods are currently loaded in the loadAffordability function
+#
+#     When uncommenting this, also uncomment the function call at the bottom of the file
+#
+# """
+#
+#
+# # def loadNeighborhoodProfiles(file):
+# #     dframe = pd.read_csv(file)
+# #
+# #     for index, row in dframe.iterrows():
+# #         ry, _ = ReportYear.objects.get_or_create()
+# #         profile, _ = Neighborhood.objects.get_or_create(
+# #                 name=row['NP_Title'],
+# #                 report_year=ry
+# #         )
+# #         profile.save()
+
+
+
+"""
+    Note: Uncomment loadHousingSUpplyandPermits and its call at the bottom of the file once report_year is removed
+    from the Neighborhood model
+"""
+
+# def loadHousingSupplyandPermits(file):
+#     """Load housing supply and permit data into respective models"""
+#
+#     dframe = pd.read_csv(file)
+#
+#     for index, row in dframe.iterrows():
+#         ry, _ = ReportYear.objects.get_or_create(year=row['ReportYear'])
+#         n, _ = Neighborhood.objects.get_or_create(name=row['Neighborhood'].strip())
+#         hs = HousingSupply(
+#                             neighborhood= n,
+#                             report_year= ry,
+#                             single_units= row['SingleFamilyUnits'],
+#                             multi_units= row['MultiFamilyUnits']
+#         )
+#         hs.save()
+#
+#         hp = HousingPermits(
+#                             neighborhood=n,
+#                             report_year=ry,
+#                             single_permits=row['SingleFamilyPermits'],
+#                             multi_permits=row['MultiFamilyPermits']
+#         )
+#         hp.save()
+#
+
 
 
 ### MAIN ###
@@ -77,7 +123,13 @@ fileDemo = "https://raw.githubusercontent.com/hackoregon/housing-backend/datasou
 fileNeighborhoods = "https://raw.githubusercontent.com/hackoregon/housing-backend/datasources/NeighborhoodProfiles.csv"
 fileAfford = "https://raw.githubusercontent.com/hackoregon/housing-backend/datasources/SoHAffordabilityDatabyNeighborhoodUpload.csv"
 fileRent = "https://raw.githubusercontent.com/hackoregon/housing-backend/datasources/NeighborhoodHousingMarket.csv"
+fileSupply = 'housing_backend/HousingSupplyAndPermits.csv'
+
 loadDemographics(fileDemo)
-loadNeighborhoodProfiles(fileNeighborhoods)
+
+#loadNeighborhoodProfiles(fileNeighborhoods)
+
 loadAffordability(fileAfford)
 loadNeighborhoodRent(fileRent)
+#loadHousingSupplyandPermits(fileSupply)
+

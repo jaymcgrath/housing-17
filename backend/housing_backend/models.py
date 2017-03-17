@@ -57,6 +57,7 @@ class Neighborhood(models.Model):
     def __repr__(self):
         return self.name
 
+
 class ReportYear(models.Model):
     year = models.IntegerField(default=0)
 
@@ -65,4 +66,40 @@ class ReportYear(models.Model):
 
     def __repr__(self):
         return str(self.year)
+
+
+class HousingSupply(models.Model):
+    """ Models single year of one neighborhood's housing supply """
+    neighborhood = models.ForeignKey('Neighborhood', on_delete=models.CASCADE, help_text='Neighborhood by census tract')
+    report_year = models.ForeignKey('ReportYear', on_delete=models.CASCADE)
+    single_units = models.IntegerField(default=0, help_text='Single Family units available this year')
+    multi_units = models.IntegerField(default=0, help_text='Multi-Family units available this year')
+
+    def __str__(self):
+        template = "HousingSupply: {nh} {yr}"
+        return template.format(nh=self.neighborhood, yr=self.report_year)
+
+    def __repr__(self):
+        template = "HousingSupply: {nh} {yr}"
+        return template.format(nh=self.neighborhood, yr=self.report_year)
+
+
+class HousingPermits(models.Model):
+    """ Models single year of one neighborhood's housing permits issued """
+    neighborhood = models.ForeignKey('Neighborhood', on_delete=models.CASCADE, help_text='Neighborhood by census tract')
+    report_year = models.ForeignKey('ReportYear', on_delete=models.CASCADE)
+    single_permits = models.IntegerField(default=0, help_text='Single Family permits issued this year')
+    multi_permits = models.IntegerField(default=0, help_text='Multi-Family permits issued this year')
+
+    def __str__(self):
+        template = "HousingPermits: {nh} {yr}"
+        return template.format(nh=self.neighborhood, yr=self.report_year)
+
+    def __repr__(self):
+        template = "HousingPermits: {nh} {yr}"
+        return template.format(nh=self.neighborhood, yr=self.report_year)
+
+
+
+
 
