@@ -123,7 +123,7 @@ fileDemo = "https://raw.githubusercontent.com/hackoregon/housing-backend/datasou
 fileNeighborhoods = "https://raw.githubusercontent.com/hackoregon/housing-backend/datasources/NeighborhoodProfiles.csv"
 fileAfford = "https://raw.githubusercontent.com/hackoregon/housing-backend/datasources/SoHAffordabilityDatabyNeighborhoodUpload.csv"
 fileRent = "https://raw.githubusercontent.com/hackoregon/housing-backend/datasources/NeighborhoodHousingMarket.csv"
-fileSupply = 'housing_backend/HousingSupplyAndPermits.csv'
+fileSupply = "https://raw.githubusercontent.com/hackoregon/housing-backend/datasources/HousingSupplyAndPermits.csv"
 
 loadDemographics(fileDemo)
 
