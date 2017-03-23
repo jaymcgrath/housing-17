@@ -6,9 +6,9 @@ services:
       - backend
   web:
     build: .
-    command: ./start-dev-server.sh
+    command: /code/start-dev-server.sh
     volumes:
-      - ./backend:/code
+      - .:/code
     ports:
       - "8000:8000"
     networks:
