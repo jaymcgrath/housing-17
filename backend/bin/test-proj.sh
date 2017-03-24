@@ -1,2 +1,2 @@
 #! /bin/bash
-docker-compose run web py.test
+docker-compose -f backend/docker-compose.yml run web py.test
