@@ -22,6 +22,6 @@ before_install:
 script:
   - docker version
   - /usr/local/bin/docker-compose version
-  - ./bin/test-proj.sh
+  - ./backend/bin/test-proj.sh
 #after_success:
-#  - ./bin/docker-push.sh
+#  - ./backend/bin/docker-push.sh
