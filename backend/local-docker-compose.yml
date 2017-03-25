@@ -4,7 +4,7 @@ services:
     image: postgres:9.5.5
     networks:
       - backend
-  web:
+  housing-service:
     build: .
     command: /code/start-dev-server.sh
     volumes:

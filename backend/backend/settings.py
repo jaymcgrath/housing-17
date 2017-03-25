@@ -23,7 +23,7 @@ SECRET_KEY = 'public_secret_key'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.99.100', 'hacko-integration-658279555.us-west-2.elb.amazonaws.com']
 
 
 # Application definition
