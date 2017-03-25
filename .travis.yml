@@ -23,5 +23,5 @@ script:
   - docker version
   - /usr/local/bin/docker-compose version
   - ./backend/bin/test-proj.sh
-#after_success:
-#  - ./backend/bin/docker-push.sh
+after_success:
+  - ./backend/bin/docker-push.sh
