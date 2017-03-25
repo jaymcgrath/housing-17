@@ -13,14 +13,14 @@ while getopts ":lt" opt; do
         l)
           docker-compose -f $PROJ_SETTINGS_DIR/local-docker-compose.yml build
           docker-compose -f $PROJ_SETTINGS_DIR/local-docker-compose.yml run \
-          --entrypoint /code/bin/test-entrypoint.sh $DOCKER_IMAGE
+          --entrypoint /code/bin/test-entrypoint.sh web
           ;;
         t)
           # docker-compose -f $PROJ_SETTINGS_DIR/travis-docker-compose.yml build
           # docker-compose -f $PROJ_SETTINGS_DIR/travis-docker-compose.yml run \
           docker-compose -f backend/travis-docker-compose.yml build
           docker-compose -f backend/travis-docker-compose.yml run \
-          --entrypoint /code/bin/test-entrypoint.sh $DOCKER_IMAGE
+          --entrypoint /code/bin/test-entrypoint.sh web
           ;;
         *)
           usage
