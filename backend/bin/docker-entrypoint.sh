@@ -7,4 +7,4 @@ echo  Running docker-entrypoint.sh...
 #python manage.py collectstatic --no-input
 
 # Fire up a lightweight frontend to host the Django endpoints - gunicorn was the default choice
-gunicorn budget_proj.wsgi:application -b :8000
+gunicorn backend.wsgi:application -b :8000
