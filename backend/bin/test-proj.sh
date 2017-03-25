@@ -1,5 +1,5 @@
 #! /bin/bash
-#docker-compose -f backend/docker-compose.yml run web py.test
+#docker-compose -f backend/docker-compose.yml run housing-service py.test
 
 usage() { echo "Usage: $0 [-l] for a local test or [-t] for a travis test " 1>&2; exit 1; }
 
@@ -13,14 +13,14 @@ while getopts ":lt" opt; do
         l)
           docker-compose -f $PROJ_SETTINGS_DIR/local-docker-compose.yml build
           docker-compose -f $PROJ_SETTINGS_DIR/local-docker-compose.yml run \
-          --entrypoint /code/bin/test-entrypoint.sh web
+          --entrypoint /code/bin/test-entrypoint.sh housing-service
           ;;
         t)
           # docker-compose -f $PROJ_SETTINGS_DIR/travis-docker-compose.yml build
           # docker-compose -f $PROJ_SETTINGS_DIR/travis-docker-compose.yml run \
           docker-compose -f backend/travis-docker-compose.yml build
           docker-compose -f backend/travis-docker-compose.yml run \
-          --entrypoint /code/bin/test-entrypoint.sh web
+          --entrypoint /code/bin/test-entrypoint.sh housing-service
           ;;
         *)
           usage
