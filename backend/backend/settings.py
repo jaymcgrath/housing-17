@@ -55,7 +55,7 @@ MIDDLEWARE = [
 ]
 
 # Turn on CORS headers for API urls only
-CORS_URLS_REGEX = r'^/housing_api/.*$'
+CORS_URLS_REGEX = r'^/housing/.*$'
 
 # Allow CORS from anywhere
 CORS_ORIGIN_ALLOW_ALL = True
