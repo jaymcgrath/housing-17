@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+from . import project_config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -91,13 +92,23 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 ## connect to the linked docker postgres db
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'NAME': 'postgres',
+#        'USER': 'postgres',
+#        'HOST': 'db',
+#        'PORT': 5432,
+#    }
+#}
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'HOST': 'db',
-        'PORT': 5432,
+        'ENGINE': project_config.AWS['ENGINE'],
+        'NAME': project_config.AWS['NAME'],
+        'HOST': project_config.AWS['HOST'],
+        'PORT': project_config.AWS['PORT'],
+        'USER': project_config.AWS['USER'],
+        'PASSWORD': project_config.AWS['PASSWORD'],
     }
 }
 

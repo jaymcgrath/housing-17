@@ -14,4 +14,4 @@ RUN pip install -r requirements.txt
 RUN pip install --upgrade --user awscli
 RUN python
 ADD . /code/
-ENTRYPOINT [ "/code/start-dev-server.sh" ]
+ENTRYPOINT [ "/code/bin/docker-entrypoint.sh" ]
