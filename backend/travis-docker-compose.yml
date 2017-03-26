@@ -1,9 +1,9 @@
 version: '2.1'
 services:
-  db:
-    image: postgres:9.5.5
-    networks:
-      - backend
+#  db:
+#    image: postgres:9.5.5
+#    networks:
+#      - backend
   housing-service:
     environment:
     - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
@@ -18,10 +18,10 @@ services:
       - .:/code
     ports:
       - "8000:8000"
-    networks:
-      - backend
-    depends_on:
-      - db
-networks:
-  backend:
-    driver: bridge
+#    networks:
+#      - backend
+#    depends_on:
+#      - db
+#networks:
+#  backend:
+#    driver: bridge
