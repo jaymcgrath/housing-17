@@ -13,7 +13,7 @@ services:
     - PROJ_SETTINGS_DIR=${PROJ_SETTINGS_DIR}
     build: .
     image: "${DOCKER_REPO}/${DEPLOY_TARGET}/${DOCKER_IMAGE}:latest"
-    command: /code/start-dev-server.sh
+    command: /code/bin/docker-entrypoint.sh
     volumes:
       - .:/code
     ports:
