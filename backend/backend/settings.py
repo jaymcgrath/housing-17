@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+import requests
 from . import project_config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -26,6 +27,14 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.99.100', 'hacko-integration-658279555.us-west-2.elb.amazonaws.com']
 
+EC2_PRIVATE_IP  =   None    
+try:
+    EC2_PRIVATE_IP  =   requests.get('http://169.254.169.254/latest/meta-data/local-ipv4', timeout = 0.01).text
+except requests.exceptions.RequestException:
+    pass
+
+if EC2_PRIVATE_IP:
+    ALLOWED_HOSTS.append(EC2_PRIVATE_IP)
 
 # Application definition
 
