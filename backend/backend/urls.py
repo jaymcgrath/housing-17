@@ -20,3 +20,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^housing/', include('housing_backend.urls')),
 ]
+
+# This statement is necessary to enable Swagger styling to work when the app runs in Docker container
+urlpatterns += staticfiles_urlpatterns()
