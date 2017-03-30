@@ -7,7 +7,7 @@ if [ $# == 0 ]; then usage; fi
 # PURPOSE: used to launch the Django app inside the Docker container
 # Can be used on local developer machine; if used in Travis build, will fail the build after 10min timeout
 
-echo  Running start-proj...
+echo  Running start-proj.sh...
 
 # Builds and launches the Docker container to be run in daemon mode - requires [CTRL]-C to stop the container
 while getopts ":lt" opt; do
