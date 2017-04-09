@@ -1,11 +1,20 @@
 from django.db import models
 
+class ReportYear(models.Model):
+    year = models.IntegerField(default=0)
+
+    def __str__(self):
+        return str(self.year)
+
+    def __repr__(self):
+        return str(self.year)
 
 class Affordable(models.Model):
     affordable = models.BooleanField()
     demographic = models.ForeignKey('Demographic', on_delete=models.CASCADE)
     housing_size = models.ForeignKey('HousingSize', on_delete=models.CASCADE)
     neighborhood = models.ForeignKey('Neighborhood', on_delete=models.CASCADE)
+    year = models.ForeignKey('ReportYear', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         template = "{dm} {sz} {nh}"
@@ -20,20 +29,23 @@ class NeighborhoodRent(models.Model):
     nh_id = models.ForeignKey('Neighborhood', on_delete=models.CASCADE)
     housing_size = models.ForeignKey('HousingSize', on_delete=models.CASCADE)
     rent_amt = models.IntegerField(default=0)
+    year = models.ForeignKey('ReportYear', on_delete=models.CASCADE, help_text='Year for this rent sample', null=True)
     
    
 class Demographic(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, help_text='Name of this demographic group')
     income_median = models.IntegerField(default=0)
     housing_budget = models.IntegerField(default=0)
     per_with_children = models.IntegerField(default=0)
     household_comp = models.DecimalField(default=0.0, max_digits=3, decimal_places=2)
+    year = models.ForeignKey('ReportYear', on_delete=models.CASCADE, help_text='Year for this demographic sample', null=True)
 
     def __str__(self):
         return self.name
 
     def __repr__(self):
         return self.name
+
 
 class HousingSize(models.Model):
     household_type = models.CharField(max_length=50)
@@ -47,7 +59,6 @@ class HousingSize(models.Model):
       
 class Neighborhood(models.Model):
     name = models.CharField(max_length=50)
-    report_year = models.ForeignKey('ReportYear', on_delete=models.CASCADE)
 
     #shape_file = models.FieldFile() possibility if shape file data needs to be stored
 
@@ -58,14 +69,6 @@ class Neighborhood(models.Model):
         return self.name
 
 
-class ReportYear(models.Model):
-    year = models.IntegerField(default=0)
-
-    def __str__(self):
-        return str(self.year)
-
-    def __repr__(self):
-        return str(self.year)
 
 
 class HousingSupply(models.Model):
