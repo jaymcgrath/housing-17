@@ -33,12 +33,7 @@ class NeighborhoodRent(models.Model):
     
    
 class Demographic(models.Model):
-    name = models.CharField(max_length=50, help_text='Name of this demographic group')
-    income_median = models.IntegerField(default=0)
-    housing_budget = models.IntegerField(default=0)
-    per_with_children = models.IntegerField(default=0)
-    household_comp = models.DecimalField(default=0.0, max_digits=3, decimal_places=2)
-    year = models.ForeignKey('ReportYear', on_delete=models.CASCADE, help_text='Year for this demographic sample', null=True)
+    name = models.CharField(max_length=50, help_text='Name of this demographic group', unique=True)
 
     def __str__(self):
         return self.name
@@ -46,6 +41,25 @@ class Demographic(models.Model):
     def __repr__(self):
         return self.name
 
+
+class DemographicByYear(models.Model):
+    demographic = models.ForeignKey('Demographic', on_delete=models.CASCADE)
+    income_median = models.IntegerField(default=0)
+    housing_budget = models.IntegerField(default=0)
+    per_with_children = models.IntegerField(default=0, null=True)
+    household_comp = models.DecimalField(default=0.0, max_digits=3, decimal_places=2, null=True)
+    year = models.ForeignKey('ReportYear', on_delete=models.CASCADE, help_text='Year for this demographic sample',
+                             null=True)
+
+    def __str__(self):
+        """ Return a human readable string """
+        template = "DemographicByYear object: {y} {dm}"
+        return template.format(dm=self.demographic, y=self.year)
+
+    def __repr__(self):
+        """ Return a human readable representation of this object """
+        template = "DemographicByYear object: {y} {dm}"
+        return template.format(dm=self.demographic, y=self.year)
 
 class HousingSize(models.Model):
     household_type = models.CharField(max_length=50)
