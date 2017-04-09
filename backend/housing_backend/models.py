@@ -66,19 +66,3 @@ class ReportYear(models.Model):
     def __repr__(self):
         return str(self.year)
 
-    '''
-    Tootl Tip classes
-    '''
-class toolTipPopulation(models.Mode):
-    population = models.DecimalField()
-    ethnicity = models.ForeignKey('Ethnicity', on_delete=models.CASCADE)
-    neighborhood = models.ForeignKey('Neighborhood', on_delete=models.CASCADE)
-
-    def __str__(self):
-        template = "{dm} {sz} {nh}"
-        return template.format(dm=self.demographic, sz=self.housing_size, nh=self.neighborhood)
-
-    def __repr__(self):
-        template = "{dm} {sz} {nh}"
-        return template.format(dm=self.demographic, sz=self.housing_size, nh=self.neighborhood)
-
