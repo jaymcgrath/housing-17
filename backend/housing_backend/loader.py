@@ -35,20 +35,26 @@ def loadAffordability(file):
         a.save()
 
 
-def loadDemographics(file):
-    dframe = pd.read_csv(file)
+def loadDemoByYear(file):
+    df = pd.read_csv(file)
+
+    dframe = df.where((pd.notnull(df)), None)
+
 
     for index, row in dframe.iterrows():
             ry, _ = ReportYear.objects.get_or_create(year=row['DP_REPORTYEAR'])
-            demo, _ = Demographic.objects.get_or_create(
-                name=row['DP_TITLE'],
+            demo, _ = Demographic.objects.get_or_create(name=row['DP_TITLE'])
+            ry.save()
+            demo.save()
+            demo_by_year = DemographicByYear(
+                demographic=demo,
                 income_median=row['DP_INCOME_MEDIAN'],
                 housing_budget=row['DP_HOUSINGBUDGET'],
                 per_with_children=row['DP_PERCENT_WITH_CHILDREN'],
                 household_comp=row['DP_HOUSEHOLD_COMP'],
                 year=ry,
             )
-            demo.save()
+            demo_by_year.save()
 
 
 def loadNeighborhoodRent(file):
@@ -124,11 +130,12 @@ def loadHousingSupplyandPermits(file):
 
 fileDemo = "https://raw.githubusercontent.com/hackoregon/housing-backend/datasources/DemographicProfiles_w2015_Profiles_2-15-17.csv"
 fileNeighborhoods = "https://raw.githubusercontent.com/hackoregon/housing-backend/datasources/NeighborhoodProfiles.csv"
-fileAfford = "https://raw.githubusercontent.com/hackoregon/housing-backend/datasources/SoHAffordabilityDatabyNeighborhoodUpload.csv"
+fileAfford = "https://raw.githubusercontent.com/jaymcgrath/housing-17/datasources/SoHAffordabilityDatabyNeighborhoodUpload.csv"
 fileRent = "https://raw.githubusercontent.com/hackoregon/housing-backend/datasources/NeighborhoodHousingMarket.csv"
 fileSupply = "https://raw.githubusercontent.com/hackoregon/housing-backend/datasources/HousingSupplyAndPermits.csv"
 
-loadDemographics(fileDemo) # Load first because loadAffordability depends on it
+
+loadDemoByYear(fileDemo) # Load first because loadAffordability depends on it
 
 loadNeighborhoodProfiles(fileNeighborhoods)
 
