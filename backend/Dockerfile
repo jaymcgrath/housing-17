@@ -1,7 +1,6 @@
 # Dockerfile for housing-backend
 
 FROM python:3.5
-
 ENV PYTHONUNBUFFERED 1
 
 EXPOSE 8000
