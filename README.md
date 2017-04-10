@@ -146,7 +146,7 @@ Have at it!
 
 View the API GUI at localhost:8000.
 
-Feel free to explore the [API docs](https://github.com/hackoregon/housing-17/tree/backend/docs/API.md).
+Feel free to explore the [API docs](https://github.com/hackoregon/housing-backend/tree/backend/docs/API.md).
 
 ## Running the tests
 
@@ -170,11 +170,11 @@ Give an example
 
 ## Deployment
 
-See the DevOps page of the [Wiki](https://github.com/hackoregon/housing-17/wiki) for notes about how to deploy this on a live system
+See the DevOps page of the [Wiki](https://github.com/hackoregon/housing-backend/wiki) for notes about how to deploy this on a live system
 
 ## Built With
 
-See the [Wiki](https://github.com/hackoregon/housing-17/wiki) for notes about the front-end, datbases, and web framework used for the project
+See the [Wiki](https://github.com/hackoregon/housing-backend/wiki) for notes about the front-end, datbases, and web framework used for the project
 
 ## Contributing
 
@@ -197,7 +197,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 * **Riley Rustad** - *Tech Lead*
 * **Esme Miller** - *Research Lead*
 
-See also the list of [contributors](https://github.com/hackoregon/housing-17/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/hackoregon/housing-backend/contributors) who participated in this project.
 
 ## Acknowledgments
 
