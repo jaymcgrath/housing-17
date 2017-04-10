@@ -4,4 +4,4 @@ export PATH=$PATH:~/.local/bin
 #python manage.py migrate --noinput
 #python manage.py test --no-input
 
-#py.test # Disabled 2017-03-27
+py.test
