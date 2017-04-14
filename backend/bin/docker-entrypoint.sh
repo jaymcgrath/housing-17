@@ -2,7 +2,8 @@
 
 echo  Running docker-entrypoint.sh...
 
-./bin/getconfig.sh # Necessary to pull the config file here because .dockerignore ignores the config file if it's downloaded to the container image
+# Necessary to pull the config file here because .dockerignore ignores the config file if it's downloaded to the container image
+./bin/getconfig.sh
 
 # Disabled the migrate step to bring the container startup time down to acceptable levels
 #python manage.py migrate --no-input

@@ -25,8 +25,6 @@ else
     aws s3 cp \
           s3://$CONFIG_BUCKET/$DEPLOY_TARGET/$CONFIG_FILE \
           ./backend/backend/$CONFIG_FILE;
-    echo "listing the backend/backend directory..." # troubleshooting to confirm the file downloads to correct location
-    ls -la backend/backend
 
   echo "#### CONFIG COPY COMPLETE ###"
 
