@@ -9,10 +9,12 @@ echo  Running getconfig.sh...
 echo  CONFIG SETTINGS
 echo "##############################"
 echo  PROJ_SETTINGS_DIR $PROJ_SETTINGS_DIR
+echo  DEPLOY_TARGET $DEPLOY_TARGET
+echo  CONFIG_BUCKET $CONFIG_BUCKET
 
-if [ "$DEPLOY_TARGET" == "local" ]; then
+if [ "$DEPLOY_TARGET" == "dev" ]; then
     echo -e "#####################################################"
-    echo -e  USING LOCAL CONFIG - MAKE SURE YOU HAVE A LOCAL CONFIG in bin/$CONFIG_FILE
+    echo -e  USING LOCAL CONFIG - MAKE SURE YOU HAVE A LOCAL CONFIG FILE: $CONFIG_FILE
     echo -e "#####################################################"
 else
     echo  CONFIG_BUCKET $CONFIG_BUCKET
@@ -25,8 +27,7 @@ else
     aws s3 cp \
           s3://$CONFIG_BUCKET/$DEPLOY_TARGET/$CONFIG_FILE \
           ./backend/backend/$CONFIG_FILE;
-    echo "listing the backend/backend directory..." # troubleshooting to confirm the file downloads to correct location
-    ls -la backend/backend
+    ls -l ./backend/backend 
 
   echo "#### CONFIG COPY COMPLETE ###"
 
