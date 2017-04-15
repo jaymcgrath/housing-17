@@ -32,7 +32,7 @@ $ git clone https://github.com/YOUR-USERNAME/housing-backend.git
 Add upstream remote repository:
 ```
 # SSH:
-$ git remote add git@github.com:hackoregon/housing-backend.git
+$ git remote add upstream git@github.com:hackoregon/housing-backend.git
 # HTTPS:
 $ git remote add upstream https://github.com/hackoregon/housing-backend.git
 ```
@@ -90,7 +90,51 @@ $ git branch -a
 
 ## Services Development Environment
 
-### Start:
+### Dependencies
+
+* Docker or Docker toolkit
+* (Optional) Travis-CI - Contact the DevOps Team
+* (Optional) Cluster deployment keys - Contact the DevOps Team
+* (Optional) ECR Password - Contact the DevOps Team
+* (Optional) ECS Service Name - Contact the DevOps Team
+
+### How to build
+
+#### 1. Create the environment file
+
+* Create `env.sh` in the project with the following contents:
+
+```bash
+#! /bin/bash
+# Setup project specifics - Make sure env.sh is in the .gitignore and .dockerignore
+export DOCKER_IMAGE=housing-service
+export PROJ_SETTINGS_DIR=housingAPI
+export DEPLOY_TARGET=dev
+echo "##############################"
+echo  Local Project Environment
+echo "##############################"
+echo DOCKER_IMAGE $DOCKER_IMAGE
+echo PROJ_SETTINGS_DIR $PROJ_SETTINGS_DIR
+echo DEPLOY_TARGET $DEPLOY_TARGET
+```
+
+* Run `chmod +x backend/bin/env.sh` to make the script file executable
+
+#### 2. Setup your local environment
+
+* Run `source env.sh` to setup your environment
+
+#### 3. Build & test the container services
+
+* Run `backend/bin/build-proj -l` to build your container locally
+* Run `backend/bin/test-proj -l` to test your container locally
+
+#### 4. Start the project
+
+* Make sure you've got a local copy of your project's `backend/backend/project_config.py` - Contact the DevOps Team 
+* Run `backend/bin/start-proj -l` to view your service's Swaggerized API
+
+### (troys, original, 15apr) Start:
 
 Run Django and PostgreSQL:
 ```
